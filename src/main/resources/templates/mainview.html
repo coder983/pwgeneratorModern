@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Get A New Password<</title>
+</head>
+<body>
+<H1>Andrew's Password Generator</H1>
+<br>
+<input type="button" onclick="location.href='/specchars';" value="Edit Special Characters"/>
+<br>
+<br>
+<br>
+<table>
+    <tr>
+        <td  th:text="${password}">New Password Found Here</td>
+    </tr>
+    <tr>
+        <td>
+            ----------------------------
+        </td>
+    </tr>
+    <tr>
+        <td><input type="button" onclick="location.href='/password';" value="Get A Password"/></td>
+    </tr>
+</table>
+</body>
+</html>
