@@ -12,6 +12,8 @@ public class Status {
     private int nameTracker;
     private int eventTracker;
     private int placeTracker;
+    private int pwTypeTracker;
+    private int specialCharacterTracker;
 
 }
 
