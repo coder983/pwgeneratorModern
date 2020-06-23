@@ -1,6 +1,9 @@
-package edu.aws.pwgenerator.service;
+package edu.aws.pwgenerator.service.builder;
 
 
+import edu.aws.pwgenerator.service.Status;
+import edu.aws.pwgenerator.service.builder.PasswordBuilder;
+import edu.aws.pwgenerator.service.builder.PasswordData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PasswordBuilderTest {
 
     private Status status;
-    //private PasswordData passwordData;
-    //private PasswordBuilder pwbuilder;
+
     private List<PasswordBuilder> pwbuilders = new ArrayList<>();
     private static final int MAX_TEST_TYPE = 8;
     private static final String SEPERATOR = "$";

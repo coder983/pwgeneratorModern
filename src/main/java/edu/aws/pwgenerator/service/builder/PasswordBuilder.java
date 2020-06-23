@@ -1,4 +1,4 @@
-package edu.aws.pwgenerator.service;
+package edu.aws.pwgenerator.service.builder;
 
 import lombok.Getter;
 import lombok.Setter;
