@@ -17,8 +17,18 @@ public class PlaceDataSource  {
         data.setYear(name.getYear());
         Place place = placesRepository.findById(st.getPlaceTracker()).orElseThrow(() -> new IllegalArgumentException("Invalid Place ID"));
         data.setPlace(place.getPlace());
-        st.setNameTracker(st.getNameTracker() + 1);
-        st.setPlaceTracker(st.getPlaceTracker() + 1);
+
+        if (st.getNameTracker() == namesRepository.count()) {
+            st.setNameTracker(1L);
+        } else {
+            st.setNameTracker(st.getNameTracker() + 1L);
+        }
+
+        if (st.getPlaceTracker() == placesRepository.count()) {
+            st.setPlaceTracker(1L);
+        } else {
+            st.setPlaceTracker(st.getPlaceTracker() + 1L);
+        }
 
         return data;
     }

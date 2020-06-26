@@ -17,6 +17,6 @@ public class PasswordData {
     private String place;
     private String event;
     private String seperator;
-    private int type;
+    private long type;
 
 }

@@ -12,7 +12,12 @@ public class EventDataSource {
         Event event = eventsRepository.findById(st.getEventTracker()).orElseThrow(() -> new IllegalArgumentException("Invalid Event ID"));
         passwordData.setEvent(event.getEvent());
         passwordData.setYear(event.getEventyear());
-        st.setEventTracker(st.getEventTracker() + 1);
+
+        if (st.getEventTracker() == eventsRepository.count()) {
+            st.setEventTracker(1L);
+        } else {
+            st.setEventTracker(st.getEventTracker() + 1L);
+        }
 
         return passwordData;
     }

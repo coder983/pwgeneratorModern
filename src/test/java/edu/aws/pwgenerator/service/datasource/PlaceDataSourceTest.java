@@ -44,8 +44,8 @@ class PlaceDataSourceTest {
     @Test
     void fetchPlacesDataTest(){
         source = new PlaceDataSource();
-        when(namesRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(mockName));
-        when(placesRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(mockPlace));
+        when(namesRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(mockName));
+        when(placesRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(mockPlace));
         actualPWData = source.fetchPlaceData(mockStatus, namesRepository, placesRepository);
         assertTrue(expectedPWData.equals(actualPWData));
     }

@@ -25,10 +25,11 @@ public class StatusManager implements Manager{
             JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("status.json"));
 
             //set fields in status
-            status.setNameTracker((int) jsonObject.get("name"));
-            status.setEventTracker((int) jsonObject.get("event"));
-            status.setPlaceTracker((int) jsonObject.get("place"));
-            status.setPwTypeTracker((int) jsonObject.get("type"));
+            status.setNameTracker((long) jsonObject.get("name"));
+            status.setEventTracker((long) jsonObject.get("event"));
+            status.setPlaceTracker((long) jsonObject.get("place"));
+            status.setPwTypeTracker((long) jsonObject.get("type"));
+            status.setSpecialCharacterTracker((long) jsonObject.get("spec"));
 
 
         } catch (IOException | ParseException e) {
@@ -36,6 +37,21 @@ public class StatusManager implements Manager{
         }
 
         return status;
+    }
+
+    @Override
+    public Status increment(Status st, int spec, long type) {
+        if (st.getSpecialCharacterTracker() == spec) {
+            st.setSpecialCharacterTracker(1L);
+        } else {
+            st.setSpecialCharacterTracker(st.getSpecialCharacterTracker() + 1L);
+        }
+        if (st.getPwTypeTracker() == type) {
+            st.setPwTypeTracker(1L);
+        } else {
+            st.setPwTypeTracker(st.getPwTypeTracker() + 1L);
+        }
+        return st;
     }
 
     @Override

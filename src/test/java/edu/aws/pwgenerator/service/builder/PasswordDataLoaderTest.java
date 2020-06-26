@@ -30,11 +30,11 @@ class PasswordDataLoaderTest {
     EventsRepository eventsRepository;
 
     @Mock
-    private PlaceDataSource placeDataSource = new PlaceDataSource();
+    private PlaceDataSource placeDataSource;
     @Mock
-    private NameDataSource nameDataSource = new NameDataSource();
+    private NameDataSource nameDataSource;
     @Mock
-    private EventDataSource eventDataSource = new EventDataSource();
+    private EventDataSource eventDataSource;
 
     @BeforeEach
     void setUp() {

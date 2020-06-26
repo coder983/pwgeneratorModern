@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Name {
 
     @Id
-    private Integer idnames;
+    private Long idnames;
     private String year;
     private String firstname;
     private String lastname;

@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Event {
 
     @Id
-    private Integer idevents;
+    private Long idevents;
     private String event;
     private String eventyear;
 

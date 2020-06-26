@@ -40,7 +40,7 @@ class NameDataSourceTest {
     @Test
     void fetchNameDataTest(){
         source = new NameDataSource();
-        when(namesRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(mockName));
+        when(namesRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(mockName));
         actualPWData = source.fetchNameData(mockStatus, namesRepository);
         assertTrue(expectedPWData.equals(actualPWData));
     }

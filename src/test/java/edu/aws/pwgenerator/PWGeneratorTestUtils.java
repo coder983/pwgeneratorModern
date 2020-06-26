@@ -10,18 +10,18 @@ public class PWGeneratorTestUtils {
 
     public static Place buildMockPlace() {
         Place place = new Place();
-        place.setIdplaces(1);
+        place.setIdplaces(1L);
         place.setPlace("Seattle");
         return place;
     }
 
     public static Status buildMockStatus() {
         Status status = new Status();
-        status.setNameTracker(1);
-        status.setEventTracker(1);
-        status.setPlaceTracker(1);
-        status.setPwTypeTracker(1);
-        status.setSpecialCharacterTracker(1);
+        status.setNameTracker(1L);
+        status.setEventTracker(1L);
+        status.setPlaceTracker(1L);
+        status.setPwTypeTracker(1L);
+        status.setSpecialCharacterTracker(1L);
         return status;
     }
 
@@ -29,7 +29,7 @@ public class PWGeneratorTestUtils {
         Name name = new Name();
         name.setFirstname("Pete");
         name.setLastname("Soloninka");
-        name.setIdnames(1);
+        name.setIdnames(1L);
         name.setYear("1993");
         return name;
     }
@@ -38,7 +38,7 @@ public class PWGeneratorTestUtils {
         Event event = new Event();
         event.setEvent("Shiloh");
         event.setEventyear("1862");
-        event.setIdevents(1);
+        event.setIdevents(1L);
         return event;
 
     }

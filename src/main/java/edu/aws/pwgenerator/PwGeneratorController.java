@@ -1,5 +1,6 @@
 package edu.aws.pwgenerator;
 
+import edu.aws.pwgenerator.domain.NamesRepository;
 import edu.aws.pwgenerator.service.builder.PasswordDataLoader;
 import edu.aws.pwgenerator.service.PwGeneratorService;
 import edu.aws.pwgenerator.service.manager.StatusManager;
@@ -15,8 +16,13 @@ public class PwGeneratorController {
     @Autowired
     PwGeneratorService service;
 
+    @Autowired
+    NamesRepository namesRepository;
+
+    @Autowired
+    PasswordDataLoader loader;
+
     StatusManager initializer = new StatusManager();
-    PasswordDataLoader loader = new PasswordDataLoader();
 
     @RequestMapping
     public String showMain(){
@@ -27,7 +33,7 @@ public class PwGeneratorController {
     @RequestMapping("/password")
     public String getNewPassword(ModelMap model) {
         String pw = service.getAPassword(initializer, loader);
-        model.put("password", "Password Test");
+        model.put("password", pw);
         return "mainview";
     }
 

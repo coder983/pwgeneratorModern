@@ -14,7 +14,7 @@ import javax.persistence.Id;
 public class Place {
 
     @Id
-    private Integer idplaces;
+    private Long idplaces;
     private String place;
 
 }

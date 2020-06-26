@@ -19,10 +19,10 @@ public class PasswordBuilder {
     }
 
     public String builder() {
-        int type = passwordData.getType();
+        long type = passwordData.getType();
         String password = "";
 
-        switch (type) {
+        switch ((int)type) {
             case 0:
                 password = passwordData.getFirstname() +
                         passwordData.getSeperator() +

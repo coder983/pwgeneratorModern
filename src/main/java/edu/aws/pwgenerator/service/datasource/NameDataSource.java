@@ -13,7 +13,12 @@ public class NameDataSource {
         data.setFirstname(name.getFirstname());
         data.setLastname(name.getLastname());
         data.setYear(name.getYear());
-        st.setNameTracker(st.getNameTracker() + 1);
+
+        if (st.getNameTracker() == namesRepository.count()) {
+            st.setNameTracker(1L);
+        } else {
+            st.setNameTracker(st.getNameTracker() + 1L);
+        }
 
         return data;
     }

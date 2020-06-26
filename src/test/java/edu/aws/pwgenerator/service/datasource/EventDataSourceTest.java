@@ -40,7 +40,7 @@ class EventDataSourceTest {
     @Test
     void fetchNameDataTest(){
         source = new EventDataSource();
-        when(eventsRepository.findById(1)).thenReturn(java.util.Optional.ofNullable(mockEvent));
+        when(eventsRepository.findById(1L)).thenReturn(java.util.Optional.ofNullable(mockEvent));
         actualPWData = source.fetchEventData(mockStatus, eventsRepository);
         assertTrue(expectedPWData.equals(actualPWData));
     }

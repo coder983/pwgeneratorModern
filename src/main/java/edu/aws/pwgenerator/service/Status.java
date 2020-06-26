@@ -9,11 +9,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Status {
 
-    private int nameTracker;
-    private int eventTracker;
-    private int placeTracker;
-    private int pwTypeTracker;
-    private int specialCharacterTracker;
+    private long nameTracker;
+    private long eventTracker;
+    private long placeTracker;
+    private long pwTypeTracker;
+    private long specialCharacterTracker;
 
 }
 
