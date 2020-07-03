@@ -4,7 +4,9 @@ import edu.aws.pwgenerator.domain.Event;
 import edu.aws.pwgenerator.domain.EventsRepository;
 import edu.aws.pwgenerator.service.Status;
 import edu.aws.pwgenerator.service.builder.PasswordData;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EventDataSource {
 
     public PasswordData fetchEventData(Status st, EventsRepository eventsRepository){

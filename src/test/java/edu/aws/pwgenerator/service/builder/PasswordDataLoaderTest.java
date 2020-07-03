@@ -19,9 +19,10 @@ import static org.mockito.Mockito.when;
 
 class PasswordDataLoaderTest {
 
+    @Autowired
     Status mockStatus;
+    @Autowired
     PasswordDataLoader loader;
-
     @Autowired
     NamesRepository namesRepository;
     @Autowired
@@ -38,8 +39,11 @@ class PasswordDataLoaderTest {
 
     @BeforeEach
     void setUp() {
-        mockStatus = buildMockStatus();
-        loader = new PasswordDataLoader();
+        mockStatus.setNameTracker(1L);
+        mockStatus.setEventTracker(1L);
+        mockStatus.setPlaceTracker(1L);
+        mockStatus.setPwTypeTracker(1L);
+        mockStatus.setSpecialCharacterTracker(1L);
     }
 
     @Test

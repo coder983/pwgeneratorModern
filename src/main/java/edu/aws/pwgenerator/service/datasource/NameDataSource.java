@@ -4,7 +4,9 @@ import edu.aws.pwgenerator.domain.Name;
 import edu.aws.pwgenerator.domain.NamesRepository;
 import edu.aws.pwgenerator.service.Status;
 import edu.aws.pwgenerator.service.builder.PasswordData;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NameDataSource {
 
     public PasswordData fetchNameData(Status st, NamesRepository namesRepository) {

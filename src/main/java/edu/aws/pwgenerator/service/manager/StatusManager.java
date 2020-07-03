@@ -41,6 +41,7 @@ public class StatusManager implements Manager{
 
     @Override
     public Status increment(Status st, int spec, long type) {
+        
         if (st.getSpecialCharacterTracker() == spec) {
             st.setSpecialCharacterTracker(1L);
         } else {

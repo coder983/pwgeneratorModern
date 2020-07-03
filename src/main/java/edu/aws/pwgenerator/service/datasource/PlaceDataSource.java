@@ -6,7 +6,9 @@ import edu.aws.pwgenerator.domain.Place;
 import edu.aws.pwgenerator.domain.PlacesRepository;
 import edu.aws.pwgenerator.service.Status;
 import edu.aws.pwgenerator.service.builder.PasswordData;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PlaceDataSource  {
 
     public PasswordData fetchPlaceData(Status st, NamesRepository namesRepository, PlacesRepository placesRepository) {

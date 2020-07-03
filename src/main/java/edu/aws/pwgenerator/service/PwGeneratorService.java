@@ -9,9 +9,9 @@ import edu.aws.pwgenerator.service.datasource.NameDataSource;
 import edu.aws.pwgenerator.service.datasource.PlaceDataSource;
 import edu.aws.pwgenerator.service.manager.StatusManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class PwGeneratorService {
 
     private Status status;

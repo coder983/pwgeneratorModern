@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import static edu.aws.pwgenerator.PWGeneratorTestUtils.*;
 import static org.junit.Assert.assertTrue;
@@ -20,6 +21,7 @@ class EventDataSourceTest {
 
     private Event mockEvent;
     private Status mockStatus;
+
     private PasswordData expectedPWData;
     private PasswordData actualPWData;
 
