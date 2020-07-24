@@ -7,12 +7,8 @@ import edu.aws.pwgenerator.service.datasource.EventDataSource;
 import edu.aws.pwgenerator.service.datasource.NameDataSource;
 import edu.aws.pwgenerator.service.datasource.PlaceDataSource;
 import edu.aws.pwgenerator.service.manager.StatusManager;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.FileWriter;
-import java.io.IOException;
 
 @Component
 public class PasswordDataLoader {
@@ -33,7 +29,8 @@ public class PasswordDataLoader {
     public PasswordData loadPasswordData(Status st,
                                          PlaceDataSource placeDataSource,
                                          NameDataSource nameDataSource,
-                                         EventDataSource eventDataSource) {
+                                         EventDataSource eventDataSource,
+                                         long pwLength) {
         //load password data into status
         long type = st.getPwTypeTracker() - 1;
 
@@ -50,9 +47,11 @@ public class PasswordDataLoader {
             default:
                 break;
         }
-        //set type and special character in password data object
+        //set type, length and special character in password data object
         passwordData.setType(type);
         passwordData.setSeperator(SPECIAL[(int) st.getSpecialCharacterTracker() - 1]);
+        passwordData.setPasswordLength(pwLength);
+        passwordData.setPaddingMap(st.getPadding());
 
         //update special character and Password type
         manager.increment(st, SPECIAL.length, MAXTYPES);

@@ -10,11 +10,14 @@ import org.springframework.stereotype.Component;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Component
 public class StatusManager implements Manager{
 
     private Status status = new Status();
+
+    private static final int MAPPADDING = 6;
 
     public Status init() {
 
@@ -22,15 +25,24 @@ public class StatusManager implements Manager{
         JSONParser jsonParser = new JSONParser();
         try {
             //Parsing the contents of the JSON file
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader("status.json"));
+            JSONObject statusObject = (JSONObject) jsonParser.parse(new FileReader("status.json"));
+            JSONObject paddingObject = (JSONObject) jsonParser.parse(new FileReader("padding.json"));
 
             //set fields in status
-            status.setNameTracker((long) jsonObject.get("name"));
-            status.setEventTracker((long) jsonObject.get("event"));
-            status.setPlaceTracker((long) jsonObject.get("place"));
-            status.setPwTypeTracker((long) jsonObject.get("type"));
-            status.setSpecialCharacterTracker((long) jsonObject.get("spec"));
+            status.setNameTracker((long) statusObject.get("name"));
+            status.setEventTracker((long) statusObject.get("event"));
+            status.setPlaceTracker((long) statusObject.get("place"));
+            status.setPwTypeTracker((long) statusObject.get("type"));
+            status.setSpecialCharacterTracker((long) statusObject.get("spec"));
 
+            //set up padding HashMap
+            HashMap<String, String> pdg = new HashMap<>();
+            for (int x = 1; x < (MAPPADDING + 1); x++) {
+                String key = String.valueOf(x);
+                pdg.put(key, (String)paddingObject.get(key));
+            }
+
+            status.setPadding(pdg);
 
         } catch (IOException | ParseException e) {
             e.printStackTrace();

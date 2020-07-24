@@ -6,6 +6,8 @@ import edu.aws.pwgenerator.domain.Place;
 import edu.aws.pwgenerator.service.Status;
 import edu.aws.pwgenerator.service.builder.PasswordData;
 
+import java.util.HashMap;
+
 public class PWGeneratorTestUtils {
 
     public static Place buildMockPlace() {
@@ -49,6 +51,18 @@ public class PWGeneratorTestUtils {
         pwData.setLastname("Soloninka");
         pwData.setYear("1993");
         pwData.setPlace("Seattle");
+        pwData.setPaddingMap(buildPaddingMap());
         return pwData;
+    }
+
+    public static HashMap<String, String> buildPaddingMap() {
+        HashMap<String, String> pMap = new HashMap<>();
+        pMap.put("1" , "!");
+        pMap.put("2" , "us");
+        pMap.put("3" , "us!");
+        pMap.put("4" , "usa!");
+        pMap.put("5" , "gousa");
+        pMap.put("6" , "gousa!");
+        return pMap;
     }
 }

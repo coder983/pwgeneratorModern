@@ -26,13 +26,17 @@ public class PasswordBuilder {
             case 0:
                 password = passwordData.getFirstname() +
                         passwordData.getSeperator() +
-                        passwordData.getPlace();
+                        passwordData.getPlace() +
+                        passwordData.getSeperator() +
+                        passwordData.getYear();
                 break;
             case 1:
                 password = passwordData.getFirstname() +
                         passwordData.getLastname() +
                         passwordData.getSeperator() +
-                        passwordData.getPlace();
+                        passwordData.getPlace() +
+                        passwordData.getSeperator() +
+                        passwordData.getYear();
                 break;
             case 2:
                 password = passwordData.getYear() +
@@ -75,6 +79,14 @@ public class PasswordBuilder {
             default:
                 password = "Invalid Password Type";
                 break;
+        }
+
+        if (password.length() < passwordData.getPasswordLength()) {
+            long padLength = passwordData.getPasswordLength() - password.length();
+            if (padLength > 0) {
+                String padding = passwordData.getPaddingMap().get(String.valueOf(padLength));
+                password = password + padding;
+            }
         }
         return password;
     }

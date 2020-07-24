@@ -24,11 +24,11 @@ public class PwGeneratorService {
     private NameDataSource nameDataSource = new NameDataSource();
     private EventDataSource eventDataSource = new EventDataSource();
 
-    public String getAPassword(StatusManager initializer, PasswordDataLoader loader) {
+    public String getAPassword(StatusManager initializer, PasswordDataLoader loader, long passwordLength) {
 
         status = initializer.init();
 
-        passwordData = loader.loadPasswordData(status, placeDataSource, nameDataSource, eventDataSource );
+        passwordData = loader.loadPasswordData(status, placeDataSource, nameDataSource, eventDataSource, passwordLength );
 
         PasswordBuilder pwBuilder = new PasswordBuilder(passwordData);
 

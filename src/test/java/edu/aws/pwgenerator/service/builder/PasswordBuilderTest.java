@@ -1,23 +1,22 @@
 package edu.aws.pwgenerator.service.builder;
 
 
-import edu.aws.pwgenerator.service.Status;
-import edu.aws.pwgenerator.service.builder.PasswordBuilder;
-import edu.aws.pwgenerator.service.builder.PasswordData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import static edu.aws.pwgenerator.PWGeneratorTestUtils.buildPaddingMap;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PasswordBuilderTest {
 
-    private Status status;
+    //private Status status;
 
     private List<PasswordBuilder> pwbuilders = new ArrayList<>();
-    private static final int MAX_TEST_TYPE = 8;
+    private static final int MAX_TEST_TYPE = 9;
     private static final String SEPERATOR = "$";
 
     @BeforeEach
@@ -33,6 +32,13 @@ class PasswordBuilderTest {
             passwordData.setEvent("War");
             passwordData.setSeperator(SEPERATOR);
             passwordData.setType(x);
+            passwordData.setPaddingMap(buildPaddingMap());
+            if (x == 9) {
+                passwordData.setPasswordLength(12);
+                passwordData.setType(2);
+            } else {
+                passwordData.setPasswordLength(6);
+            }
 
             PasswordBuilder pwbuilder = new PasswordBuilder(passwordData);
             pwbuilders.add(x, pwbuilder);
@@ -41,18 +47,19 @@ class PasswordBuilderTest {
 
     @Test
     void builderFirstNamePlaceTest() {
-        assertEquals( "Adam$Raleigh", pwbuilders.get(0).builder());
+        assertEquals( "Adam$Raleigh$1757", pwbuilders.get(0).builder());
     }
 
     @Test
     void builderFullNamePlaceTest() {
-        assertEquals( "AdamSmith$Raleigh", pwbuilders.get(1).builder());
+        assertEquals( "AdamSmith$Raleigh$1757", pwbuilders.get(1).builder());
     }
 
     @Test
     void builderYearFirstNameTest() {
         assertEquals("1757$Adam", pwbuilders.get(2).builder());
     }
+
 
     @Test
     void builderYearFullNameTest() {
@@ -70,17 +77,23 @@ class PasswordBuilderTest {
     }
 
     @Test
-    void builderYearEvent() {
+    void builderYearEventTest() {
         assertEquals("1757$War", pwbuilders.get(6).builder());
     }
 
     @Test
-    void builderSplitYearEvent() {
+    void builderSplitYearEventTest() {
         assertEquals("17$War$57", pwbuilders.get(7).builder());
     }
 
     @Test
-    void builderInvalidPasswordType() {
+    void builderInvalidPasswordTypeTest() {
         assertEquals("Invalid Password Type", pwbuilders.get(8).builder());
     }
+
+    @Test
+    void builderPasswordLengthTest() {
+        assertEquals("1757$Adamus!", pwbuilders.get(9).builder());
+    }
+
 }

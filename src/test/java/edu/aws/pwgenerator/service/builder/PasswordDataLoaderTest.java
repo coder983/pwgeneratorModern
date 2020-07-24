@@ -2,6 +2,7 @@ package edu.aws.pwgenerator.service.builder;
 
 import edu.aws.pwgenerator.PWGeneratorTestUtils;
 import edu.aws.pwgenerator.domain.EventsRepository;
+import edu.aws.pwgenerator.domain.Name;
 import edu.aws.pwgenerator.domain.NamesRepository;
 import edu.aws.pwgenerator.domain.PlacesRepository;
 import edu.aws.pwgenerator.service.Status;
@@ -10,19 +11,25 @@ import edu.aws.pwgenerator.service.datasource.NameDataSource;
 import edu.aws.pwgenerator.service.datasource.PlaceDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+
+import java.util.Optional;
 
 import static edu.aws.pwgenerator.PWGeneratorTestUtils.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+@ExtendWith(MockitoExtension.class)
+@Configurable
 class PasswordDataLoaderTest {
 
-    @Autowired
-    Status mockStatus;
-    @Autowired
-    PasswordDataLoader loader;
+    Status mockStatus = new Status();
+    PasswordDataLoader loader = new PasswordDataLoader();
+
     @Autowired
     NamesRepository namesRepository;
     @Autowired
@@ -37,13 +44,17 @@ class PasswordDataLoaderTest {
     @Mock
     private EventDataSource eventDataSource;
 
+    long pwLength = 6;
+
     @BeforeEach
     void setUp() {
+
         mockStatus.setNameTracker(1L);
         mockStatus.setEventTracker(1L);
         mockStatus.setPlaceTracker(1L);
         mockStatus.setPwTypeTracker(1L);
         mockStatus.setSpecialCharacterTracker(1L);
+        mockStatus.setPadding(buildPaddingMap());
     }
 
     @Test
@@ -51,7 +62,7 @@ class PasswordDataLoaderTest {
 
         PasswordData expectedPasswordData = buildExpectedPlacePWData();
         when(placeDataSource.fetchPlaceData(mockStatus, namesRepository, placesRepository)).thenReturn(buildExpectedPlacePWData());
-        PasswordData actualPasswordData = loader.loadPasswordData(mockStatus, placeDataSource, nameDataSource, eventDataSource);
+        PasswordData actualPasswordData = loader.loadPasswordData(mockStatus, placeDataSource, nameDataSource, eventDataSource,pwLength);
 
         assertTrue(actualPasswordData.equals(expectedPasswordData));
 

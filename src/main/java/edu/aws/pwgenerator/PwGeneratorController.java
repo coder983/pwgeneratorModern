@@ -32,7 +32,8 @@ public class PwGeneratorController {
 
     @RequestMapping("/password")
     public String getNewPassword(ModelMap model) {
-        String pw = service.getAPassword(initializer, loader);
+        long pLength = 6; //TODO Temporary until password length installed
+        String pw = service.getAPassword(initializer, loader, pLength);
         model.put("password", pw);
         return "mainview";
     }

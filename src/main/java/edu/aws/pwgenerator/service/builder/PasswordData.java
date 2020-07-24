@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
+
 @Component
 @Getter
 @Setter
@@ -18,5 +20,7 @@ public class PasswordData {
     private String event;
     private String seperator;
     private long type;
+    private long passwordLength;
+    private HashMap<String, String> paddingMap;
 
 }
